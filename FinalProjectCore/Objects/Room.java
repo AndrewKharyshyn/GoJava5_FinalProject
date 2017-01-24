@@ -1,3 +1,5 @@
+package Objects;
+
 public class Room {
     private long roomId;
     private int persons;
