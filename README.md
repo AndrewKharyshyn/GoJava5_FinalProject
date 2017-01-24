@@ -9,4 +9,10 @@ Software requirements:
 - Browsers
 - DB (optional)
 
+Used technologies:
 
+- Java 8
+- JUnit
+- Java Collections
+- Exceptions
+- Java Stream
