@@ -66,7 +66,7 @@ public class Room {
     /**
      * Метод вызываеться при сравнении номеров
      * @return результат
-     */
+     */t
     @Override
     public int hashCode() {
         int result;
