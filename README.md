@@ -1,2 +1,18 @@
 # GoJava5_FinalProject
-GoIT GoJava5 (Group 2) Project
+
+The task for final project for second group.
+
+Software requirements:
+- IntelliJ IDEA
+- Maven
+- Git
+- Browsers
+- DB (optional)
+
+Used technologies:
+
+- Java 8
+- JUnit
+- Java Collections
+- Exceptions
+- Java Stream

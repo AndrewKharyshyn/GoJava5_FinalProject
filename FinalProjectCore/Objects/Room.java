@@ -1,4 +1,4 @@
-package FinalProjectCore;
+package Objects;
 
 public class Room {
     private long roomId;
