@@ -1,26 +1,16 @@
 package Objects;
-/**
- * Класс пользователь
- */
+
 public class User {
     private long userId;
     private String userName;
     private String userLastName;
-    /**
-     * Данный Пользователь с параметрами:
-     * @param userId Уникальный идентификатор пользоватедя
-     * @param userName Имя пользователя
-     * @param userLastName Фамилия пользователя
-     */
+
     public User(long userId, String userName, String userLastName) {
         this.userId = userId;
         this.userName = userName;
         this.userLastName = userLastName;
     }
-    /**
-     * Метод для корректного вывода информации об пользователе
-     * @return параметры пользователя
-     */
+
     @Override
     public String toString() {
         return "User{" +
@@ -42,11 +32,7 @@ public class User {
         return userLastName.equals(user.userLastName);
 
     }
-    /**
-     * Метод вызываеться при сравнивании содержимого обьектов (пользователей)
-     * @param o данный пользователь
-     * @return эквивалентность обьектов
-     */
+
     @Override
     public int hashCode() {
         int result = (int) (userId ^ (userId >>> 32));
