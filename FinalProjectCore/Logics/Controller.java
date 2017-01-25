@@ -1,7 +1,10 @@
-package FinalProjectCore;
+package Logics;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import Behavior.AbstractDAO;
+import Objects.*;
 
 public class Controller {
 
@@ -21,7 +24,7 @@ public class Controller {
     }
 
     //Entrance to the system
-    void systemEnter() {
+    public void systemEnter() {
         abstractDAOImpl.addUserRoom();
         abstractDAOImpl.addHotels();
         abstractDAOImpl.addUserTable();
