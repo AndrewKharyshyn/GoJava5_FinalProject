@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8490f30-fc7f-47ab-ad49-d2a93570a307" name="Default" comment="full srtucture">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/preferred-vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="c8490f30-fc7f-47ab-ad49-d2a93570a307" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Behavior/AbstractDAO.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Behavior/AbstractDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Logics/AbstractDAOImpl.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Logics/AbstractDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Logics/Controller.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Logics/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Main.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Objects/Room.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Objects/Room.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Objects/User.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Objects/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitignore" afterPath="$PROJECT_DIR$/gitignore" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -524,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485368077748</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="full architecture">
+      <created>1485379941659</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1485379941659</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -577,7 +575,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new package Objects was added" />
     <MESSAGE value="+JavaCode for Objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="+JavaCode for Objects" />
+    <MESSAGE value="full architecture" />
+    <option name="LAST_COMMIT_MESSAGE" value="full architecture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
