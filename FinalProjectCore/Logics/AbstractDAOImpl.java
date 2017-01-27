@@ -1,11 +1,16 @@
-package FinalProjectCore;
+package Logics;
 
 import java.util.*;
+
 
 /**
  * Реализация DAO
  * Главная задача DAO: Постройка моста между реляционной и объектной моделями данных
  */
+=======
+import Behavior.*;
+import Objects.*;
+
 public class AbstractDAOImpl implements AbstractDAO {
     /**
      * Предопределенные Списки
@@ -19,15 +24,20 @@ public class AbstractDAOImpl implements AbstractDAO {
     private List<Room> roomsHotel3 = new ArrayList<>();
     private List<Hotel> hotels = new ArrayList<>();
 
+
     /**
      * Метод вызывается при добавлении  предопределенного пользователя в списки по 3ом параметрам
      * Уникальный идентификатор пользоватедя
      * Имя пользователя
      * Фамилия пользователя
      */
+
+    //Default (virtual) User is added to empty rooms to prevent NULL
+    User defaultUser = new User(0, "noName", "noLastName");
+
     //Adding predefined users to the list
     @Override
-    public void addUserTable() {
+    public void addUsersToDB() {
         User user1 = new User(1, "Alex", "Melnikov");
         User user2 = new User(2, "Olga", "Safonova");
         User user3 = new User(3, "Oleg", "Petrov");
@@ -51,16 +61,19 @@ public class AbstractDAOImpl implements AbstractDAO {
      * Метод вызываеться при добавлении нового пользователя
      * @param user предопределенный пользователь
      */
+
+    //Adding newly created User to existing User list
+
     @Override
     public void addingNewUser(User user) {
         userList.add(user);
     }
-
     /**
      * Метод используеться при создании случайных номеров
      * Присваивая уникальный идентификатор
      */
     //Creating the random rooms
+    //Creating the random rooms with predefined and limited parameters
     private int roomId = 0;
     private Random random = new Random();
 
@@ -75,8 +88,8 @@ public class AbstractDAOImpl implements AbstractDAO {
         return new Room(++roomId, random.nextInt(5),
                 price, hotelID,
                 random.nextBoolean(),
-                random.nextDouble(),
-                null);
+                random.nextInt(26),
+                defaultUser);
     }
 
     //Room room1 = new Room(1, 2, 520, true, 0, null);
@@ -105,30 +118,14 @@ public class AbstractDAOImpl implements AbstractDAO {
      * Метод выполняет добавление случайных номеров в списки
      */
     //Adding random rooms to the lists
+    //Adding random rooms to the lists with loop
     @Override
-    public void addUserRoom() {
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-        roomsHotel1.add(generateRoom(1));
-
-        roomsHotel2.add(generateRoom(2));
-        roomsHotel2.add(generateRoom(2));
-        roomsHotel2.add(generateRoom(2));
-        roomsHotel2.add(generateRoom(2));
-        roomsHotel2.add(generateRoom(2));
-
-        roomsHotel3.add(generateRoom(3));
-        roomsHotel3.add(generateRoom(3));
-        roomsHotel3.add(generateRoom(3));
-        roomsHotel3.add(generateRoom(3));
-        roomsHotel3.add(generateRoom(3));
+    public void addGeneratedRooms() {
+        for (int i = 0; i < 10; i++) {
+            roomsHotel1.add(generateRoom(1));
+            roomsHotel2.add(generateRoom(2));
+            roomsHotel3.add(generateRoom(3));
+        }
     }
 
     /**
@@ -155,10 +152,29 @@ public class AbstractDAOImpl implements AbstractDAO {
      * @return новый список отелей
      */
     //Copying hotel lists
+    //Copying hotel lists to mutable list
     @Override
     public List<Hotel> getHotels() {
         ArrayList<Hotel> res = new ArrayList<Hotel>(hotels);
         return res;
     }
+
+    //Full Database for all generated rooms from all lists
+    @Override
+    public List<Room> allRoomsDB() {
+        addGeneratedRooms();
+        List<Room> roomsDatabase = new ArrayList<>();
+        roomsDatabase.addAll(roomsHotel1);
+        roomsDatabase.addAll(roomsHotel2);
+        roomsDatabase.addAll(roomsHotel3);
+        return roomsDatabase;
+    }
+
+    //Getter for the user list
+    @Override
+    public List<User> getUserList() {
+        return userList;
+    }
+
 }
 

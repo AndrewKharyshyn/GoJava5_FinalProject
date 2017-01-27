@@ -1,6 +1,7 @@
-package FinalProjectCore;
+package Behavior;
 
 import java.util.List;
+
 
 /**
  * Класс DAO
@@ -12,6 +13,11 @@ public interface AbstractDAO {
      * Реализация метода в классе AbstractDAOImpl
      */
     void addUserTable();//Adding users to the list
+import Objects.*;
+
+public interface AbstractDAO {
+
+    void addUsersToDB();//Adding users to the list
 
     /**
      * Поиск пользователя в списке
@@ -29,12 +35,16 @@ public interface AbstractDAO {
 
     Room generateRoom(int hotelID); //Generating random rooms
 
+
     /**
      * Заполение списка произвольных номеров
      * Реализация метода в классе AbstractDAOImpl
      */
 
     void addUserRoom(); //filling the list with random rooms
+
+    void addGeneratedRooms(); //filling the list with random rooms
+
 
     /**
      * Добавление отеля в списки
@@ -54,5 +64,9 @@ public interface AbstractDAO {
      * @param user Пользователь
      */
     void addingNewUser(User user);
+
+    List<Room> allRoomsDB ();
+
+    List<User> getUserList();
 }
 

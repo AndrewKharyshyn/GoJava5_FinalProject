@@ -1,7 +1,5 @@
 package Objects;
-/**
- * Класс номеров отелей
- */
+
 public class Room {
     private long roomId;
     private int persons;
@@ -10,16 +8,7 @@ public class Room {
     private boolean hasAdditionalService;
     private double discount;
     private User userReserved;
-    /**
-     * Данный номер с параметрами
-     * @param roomId Уникальный идентификатор комнаты
-     * @param persons количество мест в комнате
-     * @param price стоимость номера
-     * @param hotelID уникальный идентификатор отеля
-     * @param hasAdditionalService услуги сервиса
-     * @param discount скидка
-     * @param userReserved статус номера
-     */
+
     public Room(long roomId, int persons, double price, int hotelID, boolean hasAdditionalService, double discount, User userReserved) {
         this.roomId = roomId;
         this.persons = persons;
@@ -29,24 +18,16 @@ public class Room {
         this.discount = discount;
         this.userReserved = userReserved;
     }
-    /**
-     * Метод для корректного вывода информации комнате
-     * @return параметры комнаты
-     */
+
     @Override
     public String toString() {
-        return "Room{" +
-                "Room Number = " + roomId +
+        return "Room Number = " + roomId +
                 ", Persons = " + persons +
                 ", Price (original) = " + price +
                 ", AdditionalServices = " + hasAdditionalService +
                 ", Discount = " + discount + "%";
     }
-    /**
-     * Метод вызываеться при сравнивании содержимого обьектов (номеров)
-     * @param o данный номер
-     * @return эквивалентность обьектов
-     */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,10 +44,14 @@ public class Room {
         return userReserved != null ? userReserved.equals(room.userReserved) : room.userReserved == null;
 
     }
+<<<<<<< HEAD
     /**
      * Метод вызываеться при сравнении номеров
      * @return результат
      */
+=======
+
+>>>>>>> 8b391db7c2e3f8c81e9e8e249800f8956c40a0b3
     @Override
     public int hashCode() {
         int result;
