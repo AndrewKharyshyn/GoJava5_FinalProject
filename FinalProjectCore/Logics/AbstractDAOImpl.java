@@ -2,8 +2,16 @@ package FinalProjectCore;
 
 import java.util.*;
 
+/**
+ * Реализация DAO
+ * Главная задача DAO: Постройка моста между реляционной и объектной моделями данных
+ */
 public class AbstractDAOImpl implements AbstractDAO {
-
+    /**
+     * Предопределенные Списки
+     * Возможность быстрого доступа к данным
+     * Возможность быстрого добавления/даления обьектов
+     */
     //Here are the predefined lists
     private List<User> userList = new ArrayList<>();
     private List<Room> roomsHotel1 = new ArrayList<>();
@@ -11,6 +19,12 @@ public class AbstractDAOImpl implements AbstractDAO {
     private List<Room> roomsHotel3 = new ArrayList<>();
     private List<Hotel> hotels = new ArrayList<>();
 
+    /**
+     * Метод вызывается при добавлении  предопределенного пользователя в списки по 3ом параметрам
+     * Уникальный идентификатор пользоватедя
+     * Имя пользователя
+     * Фамилия пользователя
+     */
     //Adding predefined users to the list
     @Override
     public void addUserTable() {
@@ -22,6 +36,10 @@ public class AbstractDAOImpl implements AbstractDAO {
         userList.add(user3);
     }
 
+    /**
+     * Метод вызываеться при копировании пользователя во все остальные списки
+     * @return
+     */
     //Copying the user list to other list
     @Override
     public List<User> getUsers() {
@@ -29,15 +47,28 @@ public class AbstractDAOImpl implements AbstractDAO {
         return res;
     }
 
+    /**
+     * Метод вызываеться при добавлении нового пользователя
+     * @param user предопределенный пользователь
+     */
     @Override
     public void addingNewUser(User user) {
         userList.add(user);
     }
 
+    /**
+     * Метод используеться при создании случайных номеров
+     * Присваивая уникальный идентификатор
+     */
     //Creating the random rooms
     private int roomId = 0;
     private Random random = new Random();
 
+    /**
+     * Метод вызываться при генерации номера в отеле
+     * @param hotelID уникальный идентификатор отеля
+     * @return Возвращает Номер,цену,порядковый номер,название отеля
+     */
     @Override
     public Room generateRoom(int hotelID) {
         double price = random.nextInt(5001);
@@ -70,6 +101,9 @@ public class AbstractDAOImpl implements AbstractDAO {
 //    Room room19 = new Room(19, 2, 1000, 2, true, 0, null);
 //    Room room20 = new Room(20, 2, 2500, 2, true, 0, null);
 
+    /**
+     * Метод выполняет добавление случайных номеров в списки
+     */
     //Adding random rooms to the lists
     @Override
     public void addUserRoom() {
@@ -97,11 +131,17 @@ public class AbstractDAOImpl implements AbstractDAO {
         roomsHotel3.add(generateRoom(3));
     }
 
+    /**
+     * Создание Гостиничных номеров внутри списков
+     */
     //Creating hotel objects with lists inside
     Hotel hotel1 = new Hotel(1, "President Hotel", "Kyiv", roomsHotel1);
     Hotel hotel2 = new Hotel(2, "Hyatt", "Odesa", roomsHotel2);
     Hotel hotel3 = new Hotel(3, "Hyatt", "Istanbul", roomsHotel3);
 
+    /**
+     * Метод вызываеться при обьеденении отелей в 1ин список
+     */
     //Merging hotels into one list
     @Override
     public void addHotels() {
@@ -110,6 +150,10 @@ public class AbstractDAOImpl implements AbstractDAO {
         hotels.add(hotel3);
     }
 
+    /**
+     * Копирование списков отелей
+     * @return новый список отелей
+     */
     //Copying hotel lists
     @Override
     public List<Hotel> getHotels() {

@@ -3,12 +3,22 @@ package FinalProjectCore;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Класс Контроллер
+ * Предназначен для непосредственной обработки запросов от клиента и возвращения результатов.
+ */
 public class Controller {
 
     AbstractDAO abstractDAOImpl = new AbstractDAOImpl();
 
     Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Метож вызывается при вводе данных для сканирования
+     * @param promptMessage строка ввода
+     * @param errorMessage сообщение об ошибочном вводе
+     * @return вводные данные
+     */
     //Method used for scanning input data
     String getUserInput(String promptMessage, String errorMessage) {
         System.out.println(promptMessage);
@@ -20,6 +30,10 @@ public class Controller {
         return userInput;
     }
 
+    /**
+     * Вход в систему
+     * Для входа в систему нужно ввести данные пользователя (Имя,Фамилия)
+     */
     //Entrance to the system
     void systemEnter() {
         abstractDAOImpl.addUserRoom();
@@ -30,7 +44,11 @@ public class Controller {
                 "\n====================================");
         String s1 = getUserInput("\tPlease, enter your name...", "\tField is blank or less then 4 symbols. Please, input again...");
         String s2 = getUserInput("\tPlease, enter your last name...", "\tField is blank or less then 4 symbols. Please, input again...");
-
+/**
+ * Проверка наличия данного пользователя в системе
+ * Если пользователь не найден,предлагается регистрация для дальнейшего пользования сервисом
+ * Если пользователь найден в списках, производится его автовизация
+ */
         //Checking if user exists in the system
         List<User> users = abstractDAOImpl.getUsers()
                 .stream()
@@ -49,6 +67,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Метод вызыватся при добавлени нового пользователя
+     * Если пользователь не был найден в списках
+     */
     //Signing up new user (if does not exists yet)
     void newUser() {
         System.out.println("\tUser's sign up system" +
@@ -66,12 +88,23 @@ public class Controller {
         actionSelect(true);
     }
 
+    /**
+     * Метод вызываться при присваивании новому пользователю уникального идентификатора
+     * @return никальный идентификатор
+     */
     //Used to find the user's max ID in the user list
     long findNewUserID() {
         int max = abstractDAOImpl.getUsers().size();
         return max + 1;
     }
 
+    /**
+     *Меню для дальнейшых действий пользователя
+     * Выбор нужного типа поиска (Название отеля, по городу, поиск номера по параметрам)
+     * Поиск номеров
+     * Поиск отелей
+     * @param isLoggedIn Автовизированый пользователь
+     */
     //Menu to select further user's search action
     void actionSelect(boolean isLoggedIn) {
 
@@ -106,6 +139,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Поиск отеля по его названию
+     * @param name название отлея
+     * @return результат поиска
+     */
     //Searching the hotel by its name
     List<Hotel> findHotelByName(String name) {
         List<Hotel> foundHotels = abstractDAOImpl.getHotels()
@@ -128,6 +166,11 @@ public class Controller {
         return foundHotels;
     }
 
+    /**
+     * Поиск отеля по городу
+     * @param city город
+     * @return реззультат
+     */
     //Searching hotels by its city
     List<Hotel> findHotelByCity(String city) {
         List<Hotel> foundHotels = abstractDAOImpl.getHotels()
@@ -151,16 +194,33 @@ public class Controller {
         return foundHotels;
     }
 
+    /**
+     * Бронирование номера в отлее
+     * @param roomId уникальный идентификатор номера отеля
+     * @param userId уникальный идентификатор пользователя
+     * @param hotelId уникальный идентификатор отеля
+     */
     //Booking selected room
     void bookRoom(long roomId, long userId, long hotelId) {
 
     }
 
+    /**
+     * Отмена бронирования номера в отеле
+     * @param roomId уникальный идентификатор номера отеля
+     * @param userId уникальный идентификатор пользователя
+     * @param hotelId уникальный идентификатор отеля
+     */
     //Cancelling reservation of the selected room
     void cancelReservation(long roomId, long userId, long hotelId) {
 
     }
 
+    /**
+     * Поиск номера по городам или отелям
+     * @param params параметры требуемого номера
+     * @return результат поиска
+     */
     //Searching rooms by cities or hotels
     List<Room> findRoom(Map<String, String> params) {
         Collection<Hotel> hotels = abstractDAOImpl.getHotels();
@@ -184,6 +244,14 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Посик по параметрам
+     * Кол-во чел-к
+     * Цена
+     * Дополнительные услуги в номере
+     * @param roomList Список номеров
+     * @return результат поиска
+     */
     //Parametrized search of the rooms
     List<Room> findRoomByParams(List<Room> roomList) {
         System.out.println("You can filter rooms by parameters here:");
@@ -217,6 +285,10 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Метод проверяет автовизацию пользователя
+     * @param isLoggedIn
+     */
     void logInCheck(boolean isLoggedIn) {
         if (!isLoggedIn) {
             System.out.println("User not registered." +
