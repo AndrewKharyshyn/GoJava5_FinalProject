@@ -3,16 +3,12 @@ package Logics;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+import Behavior.*;
+import Objects.*;
 /**
  * Класс Контроллер
  * Предназначен для непосредственной обработки запросов от клиента и возвращения результатов.
  */
-=======
-import Behavior.*;
-import Objects.*;
-
-
 public class Controller {
 
     AbstractDAO abstractDAOImpl = new AbstractDAOImpl();
@@ -22,7 +18,6 @@ public class Controller {
     private String nameRequest = "\tPlease, enter your name...";
     private String lastNameRequest = "\tPlease, enter your last name...";
     private String blankFieldErr = "\tField is blank or less then 4 symbols. Please, input again...";
-
     /**
      * Метож вызывается при вводе данных для сканирования
      * @param promptMessage строка ввода
@@ -41,38 +36,20 @@ public class Controller {
     }
 
 
-    /**
-     * Вход в систему
-     * Для входа в систему нужно ввести данные пользователя (Имя,Фамилия)
-     */
-    //Entrance to the system
-    void systemEnter() {
-        abstractDAOImpl.addUserRoom();
-
     //Entrance to the system at startup
     public void systemEnter() {
         abstractDAOImpl.allRoomsDB();
-
         abstractDAOImpl.addHotels();
         abstractDAOImpl.addUsersToDB();
 
         System.out.println("Welcome to the Hotel Online Booking System!" +
                 "\n====================================");
-
-        String s1 = getUserInput("\tPlease, enter your name...", "\tField is blank or less then 4 symbols. Please, input again...");
-        String s2 = getUserInput("\tPlease, enter your last name...", "\tField is blank or less then 4 symbols. Please, input again...");
-/**
- * Проверка наличия данного пользователя в системе
- * Если пользователь не найден,предлагается регистрация для дальнейшего пользования сервисом
- * Если пользователь найден в списках, производится его автовизация
- */
-        //Checking if user exists in the system
-
         String name = getUserInput(nameRequest, blankFieldErr);
         String lastName = getUserInput(lastNameRequest, blankFieldErr);
-
+/**
+ * Проверка существует ли пользователь в системе БД
+ */
         //Checking if user exists in the system DB already
-
         List<User> users = abstractDAOImpl.getUsers()
                 .stream()
                 .filter(u -> u.getUserName().equalsIgnoreCase(name) && u.getUserLastName().equalsIgnoreCase(lastName))
@@ -91,17 +68,12 @@ public class Controller {
         }
     }
 
-
     /**
      * Метод вызыватся при добавлени нового пользователя
      * Если пользователь не был найден в списках
      */
-    //Signing up new user (if does not exists yet)
-    void newUser() {
-
     //Signing up new user (if does not exist yet)
     private void createNewUser() {
-
         System.out.println("\tUser's sign up system" +
                 "\n");
 
@@ -117,7 +89,6 @@ public class Controller {
         userLoggedInID = findNewUserID();
         actionSelect(true);
     }
-
     /**
      * Метод вызываться при присваивании новому пользователю уникального идентификатора
      * @return никальный идентификатор
@@ -126,7 +97,6 @@ public class Controller {
     private long findNewUserID() {
         return abstractDAOImpl.getUsers().size() + 1;
     }
-
     /**
      *Меню для дальнейшых действий пользователя
      * Выбор нужного типа поиска (Название отеля, по городу, поиск номера по параметрам)
@@ -158,19 +128,13 @@ public class Controller {
                 break;
         }
     }
-
-<<<<<<< HEAD
     /**
      * Поиск отеля по его названию
      * @param name название отлея
      * @return результат поиска
      */
-    //Searching the hotel by its name
-    List<Hotel> findHotelByName(String name) {
-=======
     //Searching the hotel by its name to get rooms in this hotel
     private List<Hotel> findHotelByName(String name) {
->>>>>>> 8b391db7c2e3f8c81e9e8e249800f8956c40a0b3
         List<Hotel> foundHotels = abstractDAOImpl.getHotels()
                 .stream()
                 .filter(m -> m.getHotelName().contains(name))
@@ -246,66 +210,28 @@ public class Controller {
         return foundHotels;
     }
 
-<<<<<<< HEAD
     /**
-     * Бронирование номера в отлее
-     * @param roomId уникальный идентификатор номера отеля
-     * @param userId уникальный идентификатор пользователя
-     * @param hotelId уникальный идентификатор отеля
+     * Метод, используемый для выбора, если пользователь хочет перейти к модулю бронирования напрямую
+     * @param filteredList
      */
-    //Booking selected room
-    void bookRoom(long roomId, long userId, long hotelId) {
-=======
     //Method used to select if user wants to pass to booking module directly
     private void variantSelect(List<Room> filteredList) {
->>>>>>> 8b391db7c2e3f8c81e9e8e249800f8956c40a0b3
 
         System.out.println("Do you want to book the room by number?" +
                 "\n\t1. Book the room." +
                 "\n\t2. Go to search by parameters.");
         String input = scanner.nextLine();
 
-<<<<<<< HEAD
-    /**
-     * Отмена бронирования номера в отеле
-     * @param roomId уникальный идентификатор номера отеля
-     * @param userId уникальный идентификатор пользователя
-     * @param hotelId уникальный идентификатор отеля
-     */
-    //Cancelling reservation of the selected room
-    void cancelReservation(long roomId, long userId, long hotelId) {
-=======
         while (input.isEmpty() || !input.equalsIgnoreCase("1") || !input.equalsIgnoreCase("2")) {
             System.out.println("Please, choose the correct menu!");
             input = scanner.nextLine();
         }
->>>>>>> 8b391db7c2e3f8c81e9e8e249800f8956c40a0b3
 
         switch (input) {
             case "1":
                 System.out.println("Enter room number from the list above");
                 String roomNumberInput = scanner.nextLine();
 
-<<<<<<< HEAD
-    /**
-     * Поиск номера по городам или отелям
-     * @param params параметры требуемого номера
-     * @return результат поиска
-     */
-    //Searching rooms by cities or hotels
-    List<Room> findRoom(Map<String, String> params) {
-        Collection<Hotel> hotels = abstractDAOImpl.getHotels();
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            switch (entry.getKey()) {
-                case "city":
-                    hotels
-                            .stream()
-                            .filter(h -> h.getCity().equals(entry.getValue()))
-                            .collect(Collectors.toList());
-                    break;
-                case "hotel":
-                    hotels
-=======
                 while (roomNumberInput.isEmpty()) {
                     System.out.println("Please, choose the correct room number from the list");
                     roomNumberInput = scanner.nextLine();
@@ -317,7 +243,6 @@ public class Controller {
                 //Getting Hotel ID from the chosen Room using RoomID
                 if (filteredList.stream().anyMatch(roomNo -> roomNo.getRoomId() == searchRoomID)) {
                     long hotelNo = filteredList
->>>>>>> 8b391db7c2e3f8c81e9e8e249800f8956c40a0b3
                             .stream()
                             .findFirst()
                             .get()
@@ -335,7 +260,12 @@ public class Controller {
                 break;
         }
     }
-
+    /**
+     * Бронирование номера в отлее
+     * @param roomId уникальный идентификатор номера отеля
+     * @param userId уникальный идентификатор пользователя
+     * @param hotelId уникальный идентификатор отеля
+     */
     //Booking the selected room
     private void bookRoom(long roomId, long userId, long hotelId) {
 
@@ -371,6 +301,12 @@ public class Controller {
         }
     }
 
+    /**
+     * Отмена бронирования номера в отеле
+     * @param roomId уникальный идентификатор номера отеля
+     * @param userId уникальный идентификатор пользователя
+     * @param hotelId уникальный идентификатор отеля
+     */
     //Cancelling reservation of the selected room
     private void cancelReservation(long roomId, long userId, long hotelId) {
 
@@ -425,17 +361,15 @@ public class Controller {
         return null;
     }
 
-<<<<<<< HEAD
     /**
-     * Метод проверяет автовизацию пользователя
+     * Метод вызывается перед каждым действием пользователя
+     * Правильно ли автовизирован пользователь
+     * Применяет глобальную переменную
      * @param isLoggedIn
      */
-    void logInCheck(boolean isLoggedIn) {
-=======
     //Method checks if user is properly logged in before every action performed (using global variable)
     private void logInCheck(boolean isLoggedIn) {
 
->>>>>>> 8b391db7c2e3f8c81e9e8e249800f8956c40a0b3
         if (!isLoggedIn) {
             System.out.println("User not registered in the system." +
                     "\n\tDo you want to continue?" +
@@ -459,4 +393,3 @@ public class Controller {
         }
     }
 }
-

@@ -7,7 +7,6 @@ import java.util.*;
  * Реализация DAO
  * Главная задача DAO: Постройка моста между реляционной и объектной моделями данных
  */
-=======
 import Behavior.*;
 import Objects.*;
 
@@ -15,7 +14,7 @@ public class AbstractDAOImpl implements AbstractDAO {
     /**
      * Предопределенные Списки
      * Возможность быстрого доступа к данным
-     * Возможность быстрого добавления/даления обьектов
+     * Возможность быстрого добавления/удаления обьектов
      */
     //Here are the predefined lists
     private List<User> userList = new ArrayList<>();
@@ -24,6 +23,13 @@ public class AbstractDAOImpl implements AbstractDAO {
     private List<Room> roomsHotel3 = new ArrayList<>();
     private List<Hotel> hotels = new ArrayList<>();
 
+    /**
+     * Добавление полькователя в пустые комнаты, чтобы предотвратить NULL
+     * По умолчанию
+     */
+
+    //Default (virtual) User is added to empty rooms to prevent NULL
+    User defaultUser = new User(0, "noName", "noLastName");
 
     /**
      * Метод вызывается при добавлении  предопределенного пользователя в списки по 3ом параметрам
@@ -31,10 +37,6 @@ public class AbstractDAOImpl implements AbstractDAO {
      * Имя пользователя
      * Фамилия пользователя
      */
-
-    //Default (virtual) User is added to empty rooms to prevent NULL
-    User defaultUser = new User(0, "noName", "noLastName");
-
     //Adding predefined users to the list
     @Override
     public void addUsersToDB() {
@@ -61,9 +63,7 @@ public class AbstractDAOImpl implements AbstractDAO {
      * Метод вызываеться при добавлении нового пользователя
      * @param user предопределенный пользователь
      */
-
     //Adding newly created User to existing User list
-
     @Override
     public void addingNewUser(User user) {
         userList.add(user);
@@ -72,7 +72,6 @@ public class AbstractDAOImpl implements AbstractDAO {
      * Метод используеться при создании случайных номеров
      * Присваивая уникальный идентификатор
      */
-    //Creating the random rooms
     //Creating the random rooms with predefined and limited parameters
     private int roomId = 0;
     private Random random = new Random();
@@ -159,6 +158,10 @@ public class AbstractDAOImpl implements AbstractDAO {
         return res;
     }
 
+    /**
+     * Полная база данных для всех сгенерированых номкеров из всех списков
+     * @return база данных номеров
+     */
     //Full Database for all generated rooms from all lists
     @Override
     public List<Room> allRoomsDB() {
@@ -170,6 +173,10 @@ public class AbstractDAOImpl implements AbstractDAO {
         return roomsDatabase;
     }
 
+    /**
+     * Метод вызывающийся при получении списка пользователей
+     * @return Список пользователей
+     */
     //Getter for the user list
     @Override
     public List<User> getUserList() {

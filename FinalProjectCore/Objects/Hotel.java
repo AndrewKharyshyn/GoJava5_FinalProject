@@ -1,20 +1,31 @@
 package Objects;
 
 import java.util.List;
-
+/**
+ * Класс Отелей
+ */
 public class Hotel {
     private int hotelId;
     private String hotelName;
     private String city;
     private List<Room> rooms;
-
+    /**
+     * Данный отель с  параметрами :
+     * @param hotelId Уникальный идентификатор отеля
+     * @param hotelName Название Отеля
+     * @param city Город в котором находиться отель
+     * @param rooms комнаты
+     */
     public Hotel(int hotelId, String hotelName, String city, List<Room> rooms) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.city = city;
         this.rooms = rooms;
     }
-
+    /**
+     * Метод для корректного вывода информации об отеле
+     * @return параметры отеля
+     */
         @Override
     public String toString() {
         return "Hotel{" +
@@ -24,7 +35,11 @@ public class Hotel {
                 ", rooms=" + rooms +
                 '}';
     }
-
+    /**
+     * Метод вызываеться при сравнивании содержимого обьектов (отелей)
+     * @param o данный отель
+     * @return эквивалентность обьектов
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,7 +53,10 @@ public class Hotel {
         return rooms.equals(hotel.rooms);
 
     }
-
+    /**
+     *Метод вызываеться при сравнении отелей
+     * @return результат
+     */
     @Override
     public int hashCode() {
         int result = hotelId;
