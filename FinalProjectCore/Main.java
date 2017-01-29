@@ -1,6 +1,6 @@
-package FinalProjectCore;
 
-import FinalProjectCore.Logics.*;
+
+import Logics.*;
 
 public class Main {
     public static void main(String[] args) {
