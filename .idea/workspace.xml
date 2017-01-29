@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8490f30-fc7f-47ab-ad49-d2a93570a307" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Behavior/AbstractDAO.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Behavior/AbstractDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Logics/AbstractDAOImpl.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Logics/AbstractDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Logics/Controller.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Logics/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Main.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Objects/Hotel.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Objects/Hotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Objects/Room.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Objects/Room.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FinalProjectCore/Objects/User.java" afterPath="$PROJECT_DIR$/FinalProjectCore/Objects/User.java" />
-    </list>
+    <list default="true" id="c8490f30-fc7f-47ab-ad49-d2a93570a307" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
