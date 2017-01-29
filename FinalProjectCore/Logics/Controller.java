@@ -1,7 +1,7 @@
-package FinalProjectCore.Logics;
+package Logics;
 
-import FinalProjectCore.Behavior.*;
-import FinalProjectCore.Objects.*;
+import Behavior.*;
+import Objects.*;
 
 import java.util.*;
 import java.util.stream.Collectors;

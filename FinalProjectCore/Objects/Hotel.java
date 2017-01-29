@@ -1,6 +1,7 @@
-package FinalProjectCore.Objects;
+package Objects;
 
 import java.util.List;
+
 
 public class Hotel {
     private int hotelId;
