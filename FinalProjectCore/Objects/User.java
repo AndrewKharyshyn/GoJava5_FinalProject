@@ -1,4 +1,4 @@
-package Objects;
+package FinalProjectCore.Objects;
 
 public class User {
     private long userId;
