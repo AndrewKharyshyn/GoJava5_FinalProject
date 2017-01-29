@@ -1,13 +1,20 @@
 package Logics;
 
-import Objects.*;
-import Behavior.*;
-
-
 import java.util.*;
 
-public class AbstractDAOImpl implements AbstractDAO {
+/**
+ * Реализация DAO
+ * Главная задача DAO: Постройка моста между реляционной и объектной моделями данных
+ */
+import Behavior.*;
+import Objects.*;
 
+public class AbstractDAOImpl implements AbstractDAO {
+    /**
+     * Предопределенные Списки
+     * Возможность быстрого доступа к данным
+     * Возможность быстрого добавления/удаления обьектов
+     */
     //Here are the predefined lists
     private List<User> userList = new ArrayList<>();
     private List<Room> roomsHotel1 = new ArrayList<>();
@@ -18,6 +25,7 @@ public class AbstractDAOImpl implements AbstractDAO {
     private List<Hotel> hotels = new ArrayList<>();
     private List<Room> roomsDatabase = new ArrayList<>();
 
+
     //Default (virtual) User is added to empty rooms
     // or after reservation is cancelled to prevent NULL
     @Override
@@ -26,6 +34,19 @@ public class AbstractDAOImpl implements AbstractDAO {
         return defaultUser;
     }
 
+    /**
+     * Добавление полькователя в пустые комнаты, чтобы предотвратить NULL
+     * По умолчанию
+     */
+
+    //Default (virtual) User is added to empty rooms to prevent NULL
+
+    /**
+     * Метод вызывается при добавлении  предопределенного пользователя в списки по 3ом параметрам
+     * Уникальный идентификатор пользоватедя
+     * Имя пользователя
+     * Фамилия пользователя
+     */
     //Adding predefined users to the list
     @Override
     public void addUsersToDB() {
@@ -38,17 +59,28 @@ public class AbstractDAOImpl implements AbstractDAO {
         userList.add(user3);
         userList.add(user4);
     }
-
+    /**
+     * Метод вызываеться при добавлении нового пользователя
+     * @param user предопределенный пользователь
+     */
     //Adding newly created User to existing User list
     @Override
     public void addingNewUser(User user) {
         userList.add(user);
     }
-
+    /**
+     * Метод используеться при создании случайных номеров
+     * Присваивая уникальный идентификатор
+     */
     //Creating the random rooms with predefined and limited parameters
     private int roomId = 0;
     private Random random = new Random();
 
+    /**
+     * Метод вызываться при генерации номера в отеле
+     * @param hotelID уникальный идентификатор отеля
+     * @return Возвращает Номер,цену,порядковый номер,название отеля
+     */
     @Override
     public Room generateRoom(int hotelID) {
         double price = random.nextInt(5001);
@@ -59,6 +91,10 @@ public class AbstractDAOImpl implements AbstractDAO {
                 generateDefaultUser());
     }
 
+    /**
+     * Метод выполняет добавление случайных номеров в списки
+     */
+    //Adding random rooms to the lists
     //Adding random rooms to the lists with loop
     @Override
     public void addGeneratedRooms() {
@@ -71,6 +107,9 @@ public class AbstractDAOImpl implements AbstractDAO {
         }
     }
 
+    /**
+     * Создание Гостиничных номеров внутри списков
+     */
     //Creating hotel objects with lists inside
     Hotel hotel1 = new Hotel(1, "President Hotel", "Kyiv", roomsHotel1, 5);
     Hotel hotel2 = new Hotel(2, "Hyatt", "Odesa", roomsHotel2, 4);
@@ -78,6 +117,9 @@ public class AbstractDAOImpl implements AbstractDAO {
     Hotel hotel4 = new Hotel(4, "Grand Palace", "Beijing", roomsHotel4, 4);
     Hotel hotel5 = new Hotel(5, "Vavilon", "Bombei", roomsHotel5, 4);
 
+    /**
+     * Метод вызываеться при обьеденении отелей в 1ин список
+     */
     //Merging hotels into one list
     @Override
     public void addHotels() {
@@ -88,6 +130,11 @@ public class AbstractDAOImpl implements AbstractDAO {
         hotels.add(hotel5);
     }
 
+    /**
+     * Копирование списков отелей
+     * @return новый список отелей
+     */
+    //Copying hotel lists
     //Copying hotel lists to mutable list
     @Override
     public List<Hotel> getHotels() {
@@ -95,6 +142,10 @@ public class AbstractDAOImpl implements AbstractDAO {
         return res;
     }
 
+    /**
+     * Полная база данных для всех сгенерированых номкеров из всех списков
+     * @return база данных номеров
+     */
     //Full Database for all generated rooms from all lists
     @Override
     public List<Room> allRoomsDB() {
@@ -107,7 +158,14 @@ public class AbstractDAOImpl implements AbstractDAO {
         return roomsDatabase;
     }
 
+
     //Getter for the all rooms list
+    /**
+     * Метод вызывающийся при получении списка пользователей
+     * @return Список пользователей
+     */
+    //Getter for the user list
+
     @Override
     public List<Room> getRoomDB() {
         return roomsDatabase;

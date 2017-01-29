@@ -1,7 +1,9 @@
 package Objects;
 
 import java.util.List;
-
+/**
+ * Класс Отелей
+ */
 public class Hotel {
     private int hotelId;
     private String hotelName;
@@ -10,6 +12,15 @@ public class Hotel {
     private int stars;
 
     public Hotel(int hotelId, String hotelName, String city, List<Room> rooms, int stars) {
+
+    /**
+     * Данный отель с  параметрами :
+     * @param hotelId Уникальный идентификатор отеля
+     * @param hotelName Название Отеля
+     * @param city Город в котором находиться отель
+     * @param rooms комнаты
+     */
+
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.city = city;
@@ -17,7 +28,11 @@ public class Hotel {
         this.stars = stars;
     }
 
-    @Override
+    /**
+     * Метод для корректного вывода информации об отеле
+     * @return параметры отеля
+     */
+        @Override
     public String toString() {
         return "Hotel{" +
                 "hotelId=" + hotelId +

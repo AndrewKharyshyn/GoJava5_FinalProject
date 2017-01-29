@@ -7,6 +7,11 @@ import Objects.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Класс Контроллер
+ * Предназначен для непосредственной обработки запросов от клиента и возвращения результатов.
+ */
+
 public class Controller {
 
     AbstractDAO abstractDAOImpl = new AbstractDAOImpl();
@@ -20,15 +25,25 @@ public class Controller {
 
     //Method used for scanning String input data
     private String getStringInput(String promptMessage, String errorMessage) {
-        System.out.println(promptMessage);
-        String userInput = scanner.nextLine();
-        while (userInput.isEmpty() || userInput.length() < 4) {
-            System.out.println(errorMessage);
-            userInput = scanner.nextLine();
-        }
-        return userInput;
-    }
 
+        /**
+         * Метож вызывается при вводе данных для сканирования
+         * @param promptMessage строка ввода
+         * @param errorMessage сообщение об ошибочном вводе
+         * @return вводные данные
+         */
+        //Method used for scanning input data
+        private String getUserInput (String promptMessage, String errorMessage){
+            System.out.println(promptMessage);
+            String userInput = scanner.nextLine();
+            while (userInput.isEmpty() || userInput.length() < 4) {
+                System.out.println(errorMessage);
+                userInput = scanner.nextLine();
+            }
+            return userInput;
+        }
+
+    }
     //Entrance to the system at startup
     public void systemEnter() {
         abstractDAOImpl.allRoomsDB();
@@ -39,6 +54,10 @@ public class Controller {
                 "\n====================================");
         String name = getStringInput(nameRequest, blankFieldErr);
         String lastName = getStringInput(lastNameRequest, blankFieldErr);
+
+/**
+ * Проверка существует ли пользователь в системе БД
+ */
 
         //Checking if user exists in the system DB already
         List<User> users = abstractDAOImpl.getUserDB()
@@ -67,6 +86,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Метод вызыватся при добавлени нового пользователя
+     * Если пользователь не был найден в списках
+     */
     //Signing up new user (if does not exist yet)
     private void createNewUser() {
         System.out.println("\tUser's sign up system" +
@@ -85,12 +108,21 @@ public class Controller {
         userLoggedInID = findNewUserID() - 1;
         actionSelect(true);
     }
-
+    /**
+     * Метод вызываться при присваивании новому пользователю уникального идентификатора
+     * @return никальный идентификатор
+     */
     //Used to find the user's max ID in the user list
     private long findNewUserID() {
         return abstractDAOImpl.getUserDB().size() + 1;
     }
-
+    /**
+     *Меню для дальнейшых действий пользователя
+     * Выбор нужного типа поиска (Название отеля, по городу, поиск номера по параметрам)
+     * Поиск номеров
+     * Поиск отелей
+     * @param isLoggedIn Автовизированый пользователь
+     */
     //Menu to select further user's search action
     private void actionSelect(boolean isLoggedIn) {
         logInCheck(isLoggedIn);
@@ -116,7 +148,11 @@ public class Controller {
                 break;
         }
     }
-
+    /**
+     * Поиск отеля по его названию
+     * @param name название отлея
+     * @return результат поиска
+     */
     //Searching the hotel by its name to get rooms in this hotel
     private List<Hotel> findHotelByName(String name, boolean isLoggedIn) {
         logInCheck(isLoggedIn);
@@ -166,6 +202,11 @@ public class Controller {
         return foundHotels;
     }
 
+    /**
+     * Поиск отеля по городу
+     * @param city город
+     * @return реззультат
+     */
     //Searching hotels by its city
     private List<Hotel> findHotelByCity(String city, boolean isLoggedIn) {
         logInCheck(isLoggedIn);
@@ -214,6 +255,10 @@ public class Controller {
         return foundHotels;
     }
 
+    /**
+     * Метод, используемый для выбора, если пользователь хочет перейти к модулю бронирования напрямую
+     * @param filteredList
+     */
     //Method used to select if user wants to pass to booking module directly
     private void variantSelect(List<Room> filteredList, boolean isLoggedIn) {
         logInCheck(isLoggedIn);
@@ -263,7 +308,12 @@ public class Controller {
                 break;
         }
     }
-
+    /**
+     * Бронирование номера в отлее
+     * @param roomId уникальный идентификатор номера отеля
+     * @param userId уникальный идентификатор пользователя
+     * @param hotelId уникальный идентификатор отеля
+     */
     //Booking the selected room
     private void bookRoom(long roomId, long userId, long hotelId, boolean isLoggedIn) {
         logInCheck(isLoggedIn);
@@ -305,6 +355,12 @@ public class Controller {
         }
     }
 
+    /**
+     * Отмена бронирования номера в отеле
+     * @param roomId уникальный идентификатор номера отеля
+     * @param userId уникальный идентификатор пользователя
+     * @param hotelId уникальный идентификатор отеля
+     */
     //Cancelling reservation of the selected room
     private void cancelReservation(long roomId, long userId, long hotelId, boolean isLoggedIn) {
         logInCheck(isLoggedIn);
@@ -328,6 +384,21 @@ public class Controller {
     private void createParamRequest(boolean isLoggedIn, List<Room> roomList) {
         logInCheck(isLoggedIn);
         Map<String, String> paramsMap = new HashMap<>();//Creating the Map with required parameters (K - parameterID, V - parameter value)
+
+    /**
+     * Посик по параметрам
+     * Кол-во чел-к
+     * Цена
+     * Дополнительные услуги в номере
+     * @param roomList Список номеров
+     * @return результат поиска
+     */
+    //Parametrized search of the rooms
+    private Map<String, String> findRoomByParams(List<Room> roomList) {
+        String persons = scanner.nextLine(); //persons
+        String price = scanner.nextLine();//price
+        String service = scanner.nextLine();//services
+
 
         System.out.println("You can filter rooms by parameters here:" +
                 "\nPlease, enter the required points where necessary:");
@@ -457,6 +528,15 @@ public class Controller {
     }
 
     //Method checks if user is properly logged in before every action performed in system(using global variable)
+
+    /**
+     * Метод вызывается перед каждым действием пользователя
+     * Правильно ли автовизирован пользователь
+     * Применяет глобальную переменную
+     * @param isLoggedIn
+     */
+    //Method checks if user is properly logged in before every action performed (using global variable)
+
     private void logInCheck(boolean isLoggedIn) {
 
         if (!isLoggedIn) {
@@ -480,6 +560,7 @@ public class Controller {
             }
         }
     }
+
 
     private boolean isDigit(String string) {
         for (char c : string.toCharArray()) {

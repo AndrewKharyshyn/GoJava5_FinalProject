@@ -1,5 +1,7 @@
 package Objects;
-
+/**
+ * Класс номеров отелей
+ */
 public class Room {
     private long roomId;
     private int persons;
@@ -8,7 +10,16 @@ public class Room {
     private boolean hasAdditionalService;
     private double discount;
     private User userReserved;
-
+    /**
+     * Данный номер с параметрами
+     * @param roomId Уникальный идентификатор комнаты
+     * @param persons количество мест в комнате
+     * @param price стоимость номера
+     * @param hotelID уникальный идентификатор отеля
+     * @param hasAdditionalService услуги сервиса
+     * @param discount скидка
+     * @param userReserved статус номера
+     */
     public Room(long roomId, int persons, double price, int hotelID, boolean hasAdditionalService, double discount, User userReserved) {
         this.roomId = roomId;
         this.persons = persons;
@@ -18,7 +29,10 @@ public class Room {
         this.discount = discount;
         this.userReserved = userReserved;
     }
-
+    /**
+     * Метод для корректного вывода информации комнате
+     * @return параметры комнаты
+     */
     @Override
     public String toString() {
         return "Room Number = " + roomId +
@@ -27,7 +41,11 @@ public class Room {
                 ", AdditionalServices = " + hasAdditionalService +
                 ", Discount = " + discount + "%";
     }
-
+    /**
+     * Метод вызываеться при сравнивании содержимого обьектов (номеров)
+     * @param o данный номер
+     * @return эквивалентность обьектов
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +63,10 @@ public class Room {
 
     }
 
+    /**
+     * Метод вызываеться при сравнении номеров
+     * @return результат
+     */
     @Override
     public int hashCode() {
         int result;
