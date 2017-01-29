@@ -1,14 +1,12 @@
-package Behavior;
+package FinalProjectCore.Behavior;
+
+import FinalProjectCore.Objects.*;
 
 import java.util.List;
-
-import Objects.*;
 
 public interface AbstractDAO {
 
     void addUsersToDB();//Adding users to the list
-
-    List<User> getUsers(); //Getting the copy of user list
 
     Room generateRoom(int hotelID); //Generating random rooms
 
@@ -20,8 +18,13 @@ public interface AbstractDAO {
 
     void addingNewUser(User user);
 
-    List<Room> allRoomsDB ();
+    List<Room> allRoomsDB();
 
-    List<User> getUserList();
+    List<Room> getRoomDB();//Get rooms from Database
+
+    User generateDefaultUser();
+
+    List<User> getUserDB();
+
 }
 

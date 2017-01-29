@@ -1,4 +1,4 @@
-package Objects;
+package FinalProjectCore.Objects;
 
 import java.util.List;
 
@@ -7,53 +7,25 @@ public class Hotel {
     private String hotelName;
     private String city;
     private List<Room> rooms;
+    private int stars;
 
-    public Hotel(int hotelId, String hotelName, String city, List<Room> rooms) {
+    public Hotel(int hotelId, String hotelName, String city, List<Room> rooms, int stars) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.city = city;
         this.rooms = rooms;
+        this.stars = stars;
     }
 
-        @Override
+    @Override
     public String toString() {
         return "Hotel{" +
                 "hotelId=" + hotelId +
                 ", hotelName='" + hotelName + '\'' +
                 ", city='" + city + '\'' +
                 ", rooms=" + rooms +
+                ", stars=" + stars +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Hotel hotel = (Hotel) o;
-
-        if (hotelId != hotel.hotelId) return false;
-        if (!hotelName.equals(hotel.hotelName)) return false;
-        if (!city.equals(hotel.city)) return false;
-        return rooms.equals(hotel.rooms);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = hotelId;
-        result = 31 * result + hotelName.hashCode();
-        result = 31 * result + city.hashCode();
-        result = 31 * result + rooms.hashCode();
-        return result;
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
     }
 
     public int getHotelId() {
@@ -78,5 +50,21 @@ public class Hotel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
     }
 }
