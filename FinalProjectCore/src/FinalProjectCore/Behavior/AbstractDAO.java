@@ -1,6 +1,6 @@
-package Behavior;
+package src.FinalProjectCore.Behavior;
 
-import Objects.*;
+import src.FinalProjectCore.Objects.*;
 
 import java.util.List;
 
