@@ -80,4 +80,3 @@ public class User {
         this.userLastName = userLastName;
     }
 }
->>>>>>> 5baadd0bc6ab23d03ea6f619b564a156e84be8cb:Booking/src/com/booking/model/User.java

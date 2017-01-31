@@ -7,8 +7,6 @@ import com.booking.model.Hotel;
 import com.booking.model.Room;
 import com.booking.model.User;
 
-import Objects.*;
-
 public class AbstractDAOImpl implements AbstractDAO {
 
     //Here are the predefined lists

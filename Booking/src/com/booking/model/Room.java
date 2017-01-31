@@ -139,5 +139,4 @@ public class Room {
     public void setUserReserved(User userReserved) {
         this.userReserved = userReserved;
     }
->>>>>>> 5baadd0bc6ab23d03ea6f619b564a156e84be8cb:Booking/src/com/booking/model/Room.java
 }
