@@ -1,4 +1,4 @@
-package Objects;
+package com.booking.model;
 /**
  * Класс номеров отелей
  */
@@ -10,6 +10,7 @@ public class Room {
     private boolean hasAdditionalService;
     private double discount;
     private User userReserved;
+    
     /**
      * Данный номер с параметрами
      * @param roomId Уникальный идентификатор комнаты
@@ -66,7 +67,7 @@ public class Room {
     /**
      * Метод вызываеться при сравнении номеров
      * @return результат
-     */t
+     */
     @Override
     public int hashCode() {
         int result;
@@ -138,4 +139,5 @@ public class Room {
     public void setUserReserved(User userReserved) {
         this.userReserved = userReserved;
     }
+>>>>>>> 5baadd0bc6ab23d03ea6f619b564a156e84be8cb:Booking/src/com/booking/model/Room.java
 }

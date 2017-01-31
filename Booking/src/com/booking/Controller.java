@@ -1,7 +1,13 @@
-package FinalProjectCore;
+package com.booking;
+
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.booking.model.Hotel;
+import com.booking.model.Room;
+import com.booking.model.User;
+
 
 public class Controller {
 
@@ -45,8 +51,8 @@ public class Controller {
         }
         if (!users.isEmpty()) {
             System.out.println("User " + s1 + " " + s2 + " has been logged in.");
-            actionSelect(true);
         }
+        actionSelect(true);
     }
 
     //Signing up new user (if does not exists yet)
@@ -63,7 +69,6 @@ public class Controller {
         System.out.println("New user " + s1 + " " + s2 + " has been registered successfully!" +
                 "\n\tNow you can proceed to Room Search System..." +
                 "\n");
-        actionSelect(true);
     }
 
     //Used to find the user's max ID in the user list
@@ -79,31 +84,44 @@ public class Controller {
                 "\n\t1. Search by hotel name;" +
                 "\n\t2. Search hotel by city;" +
                 "\n\t3. Search room by parameters;");
-        try {
-            Integer s = scanner.nextInt();
-            switch (s) {
-                case 1:
-                    String s1 = getUserInput("Please, enter the hotel name...", "The field is blank or less than 4 symbols. Please, enter your request.");
-                    findHotelByName(s1);
-                    break;
-                case 2:
-                    String s2 = getUserInput("Please, enter the city name...", "The field is blank or less than 4 symbols. Please, enter your request.");
-                    findHotelByCity(s2);
-                    break;
-                case 3:
-                    //findRoom(abstractDAOImpl.addHotelMap());
-                    break;
-                default:
-                    System.out.println("You have entered incorrect number. Please, retry...");
-                    actionSelect(true);
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.err.println("You have to enter choice from 1 to 3. Retry selection...");
-            actionSelect(true);
-        } catch (Exception e) {
-            System.err.println("XP");
-        }
+        
+        while ( true ){
+
+			try {
+				String s = scanner.nextLine();
+				if (s != null && s.length() == 1) {
+
+					switch (s) {
+					case "1":
+						String s1 = getUserInput("Please, enter the hotel name...",
+								"The field is blank or less than 4 symbols. Please, enter your request.");
+						findHotelByName(s1);
+						break;
+					case "2":
+						String s2 = getUserInput("Please, enter the city name...",
+								"The field is blank or less than 4 symbols. Please, enter your request.");
+						findHotelByCity(s2);
+						break;
+					case "3":
+						// findRoom(abstractDAOImpl.addHotelMap());
+						break;
+					default:
+						System.out.println("You have entered incorrect number. Please, retry...");
+						continue;
+					}
+				} else {
+					System.out.println("You have entered incorrect number. Please, retry...");
+					continue;
+				}
+			} catch (InputMismatchException e) {
+				System.err.println("You have to enter choice from 1 to 3. Retry selection...");
+				continue;
+			} catch (Exception e) {
+				System.err.println("XP");
+				continue;
+			}
+			break;
+		}
     }
 
     //Searching the hotel by its name

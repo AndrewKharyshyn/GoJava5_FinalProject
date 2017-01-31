@@ -1,4 +1,4 @@
-package Objects;
+package com.booking.model;
 /**
  * Класс Отелей
  */
