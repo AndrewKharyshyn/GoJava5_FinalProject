@@ -1,13 +1,12 @@
-package Logics;
-
+package FinalProjectCore.Logics;
+import FinalProjectCore.Behavior.*;
+import FinalProjectCore.Objects.*;
 import java.util.*;
 
 /**
  * Реализация DAO
  * Главная задача DAO: Постройка моста между реляционной и объектной моделями данных
  */
-import Behavior.*;
-import Objects.*;
 
 public class AbstractDAOImpl implements AbstractDAO {
     /**
@@ -42,7 +41,7 @@ public class AbstractDAOImpl implements AbstractDAO {
     //Default (virtual) User is added to empty rooms to prevent NULL
 
     /**
-     * Метод вызывается при добавлении  предопределенного пользователя в списки по 3ом параметрам
+     * Метод вызывается при добавлении  предопределенного пользователя в списки по 3-м параметрам
      * Уникальный идентификатор пользоватедя
      * Имя пользователя
      * Фамилия пользователя

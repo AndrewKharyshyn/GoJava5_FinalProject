@@ -1,8 +1,7 @@
-package Logics;
+package FinalProjectCore.Logics;
 
-import Behavior.*;
-import Objects.*;
-
+import FinalProjectCore.Behavior.*;
+import FinalProjectCore.Objects.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,27 +22,24 @@ public class Controller {
     private String goodByeScreen = "\nThank you for using Book Online System!" +
             "\n=======================================";
 
+    /**
+     * Метод вызывается при вводе данных для сканирования
+     * @param promptMessage строка ввода
+     * @param errorMessage сообщение об ошибочном вводе
+     * @return вводные данные
+     */
+
     //Method used for scanning String input data
     private String getStringInput(String promptMessage, String errorMessage) {
-
-        /**
-         * Метож вызывается при вводе данных для сканирования
-         * @param promptMessage строка ввода
-         * @param errorMessage сообщение об ошибочном вводе
-         * @return вводные данные
-         */
-        //Method used for scanning input data
-        private String getUserInput (String promptMessage, String errorMessage){
-            System.out.println(promptMessage);
-            String userInput = scanner.nextLine();
-            while (userInput.isEmpty() || userInput.length() < 4) {
-                System.out.println(errorMessage);
-                userInput = scanner.nextLine();
-            }
-            return userInput;
+        System.out.println(promptMessage);
+        String userInput = scanner.nextLine();
+        while (userInput.isEmpty() || userInput.length() < 4) {
+            System.out.println(errorMessage);
+            userInput = scanner.nextLine();
         }
-
+        return userInput;
     }
+
     //Entrance to the system at startup
     public void systemEnter() {
         abstractDAOImpl.allRoomsDB();
@@ -55,10 +51,9 @@ public class Controller {
         String name = getStringInput(nameRequest, blankFieldErr);
         String lastName = getStringInput(lastNameRequest, blankFieldErr);
 
-/**
- * Проверка существует ли пользователь в системе БД
- */
-
+        /**
+         * Проверка существует ли уже пользователь в системе БД
+         */
         //Checking if user exists in the system DB already
         List<User> users = abstractDAOImpl.getUserDB()
                 .stream()
@@ -87,7 +82,7 @@ public class Controller {
     }
 
     /**
-     * Метод вызыватся при добавлени нового пользователя
+     * Метод вызывается при добавлении нового пользователя
      * Если пользователь не был найден в списках
      */
     //Signing up new user (if does not exist yet)
@@ -108,20 +103,22 @@ public class Controller {
         userLoggedInID = findNewUserID() - 1;
         actionSelect(true);
     }
+
     /**
-     * Метод вызываться при присваивании новому пользователю уникального идентификатора
-     * @return никальный идентификатор
+     * Метод вызывается при присваивании новому пользователю уникального идентификатора
+     * @return уникальный идентификатор
      */
     //Used to find the user's max ID in the user list
     private long findNewUserID() {
         return abstractDAOImpl.getUserDB().size() + 1;
     }
+
     /**
-     *Меню для дальнейшых действий пользователя
+     *Меню для дальнейших действий пользователя
      * Выбор нужного типа поиска (Название отеля, по городу, поиск номера по параметрам)
      * Поиск номеров
      * Поиск отелей
-     * @param isLoggedIn Автовизированый пользователь
+     * @param isLoggedIn Авторизованный пользователь
      */
     //Menu to select further user's search action
     private void actionSelect(boolean isLoggedIn) {
@@ -148,9 +145,10 @@ public class Controller {
                 break;
         }
     }
+
     /**
      * Поиск отеля по его названию
-     * @param name название отлея
+     * @param name название отеля
      * @return результат поиска
      */
     //Searching the hotel by its name to get rooms in this hotel
@@ -205,7 +203,7 @@ public class Controller {
     /**
      * Поиск отеля по городу
      * @param city город
-     * @return реззультат
+     * @return результат
      */
     //Searching hotels by its city
     private List<Hotel> findHotelByCity(String city, boolean isLoggedIn) {
@@ -257,6 +255,7 @@ public class Controller {
 
     /**
      * Метод, используемый для выбора, если пользователь хочет перейти к модулю бронирования напрямую
+     * или к фильтрации результатов по параметрам
      * @param filteredList
      */
     //Method used to select if user wants to pass to booking module directly
@@ -308,8 +307,9 @@ public class Controller {
                 break;
         }
     }
+
     /**
-     * Бронирование номера в отлее
+     * Бронирование номера в отеле
      * @param roomId уникальный идентификатор номера отеля
      * @param userId уникальный идентификатор пользователя
      * @param hotelId уникальный идентификатор отеля
@@ -385,21 +385,6 @@ public class Controller {
         logInCheck(isLoggedIn);
         Map<String, String> paramsMap = new HashMap<>();//Creating the Map with required parameters (K - parameterID, V - parameter value)
 
-    /**
-     * Посик по параметрам
-     * Кол-во чел-к
-     * Цена
-     * Дополнительные услуги в номере
-     * @param roomList Список номеров
-     * @return результат поиска
-     */
-    //Parametrized search of the rooms
-    private Map<String, String> findRoomByParams(List<Room> roomList) {
-        String persons = scanner.nextLine(); //persons
-        String price = scanner.nextLine();//price
-        String service = scanner.nextLine();//services
-
-
         System.out.println("You can filter rooms by parameters here:" +
                 "\nPlease, enter the required points where necessary:");
 
@@ -421,7 +406,7 @@ public class Controller {
         String maxPrice = scanner.nextLine(); //Maximum room price
         while (!isDigit(maxPrice)) {
             System.out.println("Only digits are allowed in this field!");
-            persons = scanner.nextLine();
+            maxPrice = scanner.nextLine();
         }
         if (maxPrice.isEmpty()) {
             paramsMap.put("2", "None");
@@ -452,11 +437,17 @@ public class Controller {
         findRoomByParams(paramsMap, isLoggedIn, roomList, serv);
     }
 
+    /**
+     * Поиск по параметрам
+     * Кол-во чел-к
+     * Цена
+     * Дополнительные услуги в номере
+     * @return результат поиска
+     */
     //Parametrized search of the rooms (filtering)
     private List<Room> findRoomByParams(Map<String, String> params, boolean isLoggedIn, List<Room> list, boolean servConfirm) {
         logInCheck(isLoggedIn);
         System.out.println("\t *** Applying filters... ***\n");
-        System.out.println(params);
         List<Room> finalRoomList = new ArrayList<>();
         int personsInt = 0;
         double priceInt = 0;
@@ -527,16 +518,13 @@ public class Controller {
         return finalRoomList;
     }
 
-    //Method checks if user is properly logged in before every action performed in system(using global variable)
-
     /**
      * Метод вызывается перед каждым действием пользователя
      * Правильно ли автовизирован пользователь
      * Применяет глобальную переменную
      * @param isLoggedIn
      */
-    //Method checks if user is properly logged in before every action performed (using global variable)
-
+    //Method checks if user is properly logged in before every action performed in system(using global variable)
     private void logInCheck(boolean isLoggedIn) {
 
         if (!isLoggedIn) {
@@ -560,15 +548,20 @@ public class Controller {
             }
         }
     }
-
-
+    /**
+     * Метод проверяет является ли введенный символ цифрой
+     */
     private boolean isDigit(String string) {
         for (char c : string.toCharArray()) {
             if (!Character.isDigit(c)) return false;
         }
         return true;
     }
-
+    /**
+     * Метод используется для автоматического
+     * генерирования графического отображения
+     * количества звезд выбранного отеля
+     */
     private String starCount(int count) {
         String starCount = "";
         for (int i = 0; i < count; i++) {

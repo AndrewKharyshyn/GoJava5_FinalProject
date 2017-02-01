@@ -1,4 +1,4 @@
-package Objects;
+package FinalProjectCore.Objects;
 
 import java.util.List;
 /**

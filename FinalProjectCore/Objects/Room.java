@@ -1,4 +1,4 @@
-package Objects;
+package FinalProjectCore.Objects;
 /**
  * Класс номеров отелей
  */
