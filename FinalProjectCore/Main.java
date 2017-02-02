@@ -4,7 +4,10 @@ import FinalProjectCore.Logics.*;
 
 public class Main {
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.systemEnter();
+        try {
+            controller.systemEnter();
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer exception :)");
+        }
     }
 }
